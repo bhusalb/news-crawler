@@ -66,7 +66,7 @@
 </head>
 <body>
 <div class="flex-center position-ref full-height">
-
+Comming soon
     <div class="content">
         @foreach($news as $item)
             <div class="well">
