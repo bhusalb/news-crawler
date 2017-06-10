@@ -8,6 +8,10 @@ Route::get('/test', function () {
     return (new \App\Services\Crawler\Crawler())->execute();
 });
 
+Route::get('/test-image', function () {
+    return (new \App\Services\Crawler\Sources\OnlineKhabar\RemoveWatermark('public/KP-Oli.jpg'))->crop();
+});
+
 Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');
 Route::post('login', 'Auth\LoginController@login');
 Route::post('logout', 'Auth\LoginController@logout')->name('logout');

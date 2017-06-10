@@ -11,6 +11,14 @@ class News extends Model
         'url',
         'image',
         'intro',
-        'source'
+        'source',
+        'category_id'
     ];
+
+    public $appends = ['image_link'];
+
+    public function getImageLinkAttribute()
+    {
+        return map_storage_path_to_link($this->image);
+    }
 }
