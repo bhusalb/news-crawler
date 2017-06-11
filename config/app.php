@@ -26,6 +26,8 @@ return [
     */
 
     'env' => env('APP_ENV', 'production'),
+    
+    'error_reporting_mail' => env('ERROR_REPORTING_MAIL', 'bishnu.bhusal111@gmail.com'),
 
     /*
     |--------------------------------------------------------------------------
@@ -120,7 +122,7 @@ return [
     |
     */
 
-    'log' => env('APP_LOG', 'single'),
+    'log' => env('APP_LOG', 'daily'),
 
     'log_level' => env('APP_LOG_LEVEL', 'debug'),
 

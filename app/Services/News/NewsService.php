@@ -15,6 +15,6 @@ class NewsService
 
     public function paginateForApi()
     {
-        return News::latest()->paginate();
+        return News::latest()->with('category')->paginate();
     }
 }

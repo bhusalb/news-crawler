@@ -66,7 +66,6 @@
 </head>
 <body>
 <div class="flex-center position-ref full-height">
-Comming soon
     <div class="content">
         @foreach($news as $item)
             <div class="well">
@@ -74,7 +73,7 @@ Comming soon
                 <p>Via <strong>{{ $item->source }}</strong></p>
                 @if($item->image)
                     <div style="width: 300px;">
-                        <img src="{{ $item->image }}" width="300">
+                        <img src="{{ $item->image_link }}" width="300">
                     </div>
                 @endif
                 <p>{{ $item->intro }}</p>

@@ -13,8 +13,11 @@ trait CommonTrait
             $links[] = $domElement->getAttribute('href');
 
         foreach ($links as $link)
-            (new SingleNews($link, $this->config, $this->category))->execute()->saveNews();
-
+            try {
+                (new SingleNews($link, $this->config, $this->category))->execute()->saveNews();
+            } catch (\Exception $e) {
+                mail(config('app.error_reporting_mail'), 'Crawler has issue', $e->getMessage());
+            }
         return $this;
     }
 }

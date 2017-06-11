@@ -8,6 +8,44 @@ class Main
 {
     protected $config;
 
+
+    public function getClassesConfig()
+    {
+        return [
+            /* -- Samachar -- */
+            [
+                'class-name' => Samachar::class,
+                'url' => 'http://www.onlinekhabar.com/content/news/',
+                'category' => \App\Category::where('slug', 'news')->firstOrFail(),
+            ],
+            /* -- Opinion -- */
+            [
+                'class-name' => Opinion::class,
+                'url' => 'http://www.onlinekhabar.com/content/opinion/',
+                'category' => \App\Category::where('slug', 'opinion')->firstOrFail(),
+            ],
+            /* -- Sports -- */
+            [
+                'class-name' => Sports::class,
+                'url' => 'http://www.onlinekhabar.com/content/sports/',
+                'category' => \App\Category::where('slug', 'sports')->firstOrFail(),
+            ],
+            /* -- Prabas -- */
+            [
+                'class-name' => Prabas::class,
+                'url' => 'http://www.onlinekhabar.com/content/prabas-news/',
+                'category' => \App\Category::where('slug', 'prabas-news')->firstOrFail(),
+            ],
+            /* -- Bichitra World -- */
+            [
+                'class-name' => BichitraSansar::class,
+                'url' => 'http://www.onlinekhabar.com/content/bichitra-world/',
+                'category' => \App\Category::where('slug', 'bichitra-world')->firstOrFail(),
+            ],
+        ];
+
+    }
+
     public function __construct($config)
     {
         $this->config = $config;
@@ -16,19 +54,8 @@ class Main
 
     public function execute()
     {
-        /* -- Samachar -- */
-        (new Samachar('http://www.onlinekhabar.com/content/news/', $this->config, \App\Category::where('slug', 'news')->firstOrFail()))->execute();
+        foreach ($this->getClassesConfig() as $class)
+            (new $class['class-name']($class['url'], $this->config, $class['category']))->execute();
 
-        /* -- Opinion -- */
-        (new Opinion('http://www.onlinekhabar.com/content/opinion/', $this->config, \App\Category::where('slug', 'opinion')->firstOrFail()))->execute();
-
-        /* -- Sports -- */
-        (new Sports('http://www.onlinekhabar.com/content/sports/', $this->config, \App\Category::where('slug', 'sports')->firstOrFail()))->execute();
-
-        /* -- Prabas -- */
-        (new Prabas('http://www.onlinekhabar.com/content/prabas-news/', $this->config, \App\Category::where('slug', 'prabas-news')->firstOrFail()))->execute();
-
-        /* -- Bichitra World -- */
-        (new BichitraSansar('http://www.onlinekhabar.com/content/bichitra-world/', $this->config, \App\Category::where('slug', 'prabas-news')->firstOrFail()))->execute();
     }
 }

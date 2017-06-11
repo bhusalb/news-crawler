@@ -21,4 +21,9 @@ class News extends Model
     {
         return map_storage_path_to_link($this->image);
     }
+
+    public function category()
+    {
+        return $this->belongsTo(Category::class);
+    }
 }
